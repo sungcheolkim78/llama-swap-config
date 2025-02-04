@@ -1,0 +1,109 @@
+healthCheckTimeout: 60
+
+logRequests: true
+
+models:
+  "llama3.1":
+    cmd: >
+      llama-server
+      -m /usr/share/ollama/.ollama/models/blobs/sha256-87048bcd55216712ef14c11c2c303728463207b165bf18440b9b84b07ec00f87
+      --flash-attn
+      --jinja
+      --host 192.168.1.4
+      --port 9888
+      --ctx-size 16384
+      --gpu-layers 33
+      -t 4
+    proxy: http://192.168.1.4:9888
+    aliases:
+      - llama3.1
+    checkEndpoint: /health
+    ttl: 60
+
+  "llama3.2":
+    cmd: >
+      llama-server
+      -m /usr/share/ollama/.ollama/models/blobs/sha256-dde5aa3fc5ffc17176b5e8bdc82f587b24b2678c6c66101bf7da77af9f7ccdff
+      --flash-attn
+      --jinja
+      --host 192.168.1.4
+      --port 9888
+      --ctx-size 16384
+      --gpu-layers 29
+      -t 4
+    proxy: http://192.168.1.4:9888
+    aliases:
+      - llama3.2
+    checkEndpoint: /health
+    ttl: 60
+
+  "llama3.2-vision":
+    cmd: >
+      llama-server
+      -m /usr/share/ollama/.ollama/models/blobs/sha256-87048bcd55216712ef14c11c2c303728463207b165bf18440b9b84b07ec00f87
+      --flash-attn
+      --jinja
+      --host 192.168.1.4
+      --port 9888
+      --ctx-size 8192
+      --gpu-layers 50
+      -t 4
+    proxy: http://192.168.1.4:9888
+    aliases:
+      - llama3.2-vision
+    checkEndpoint: /health
+    ttl: 60
+
+  "phi4":
+    cmd: >
+      llama-server
+      -m /usr/share/ollama/.ollama/models/blobs/sha256-fd7b6731c33c57f61767612f56517460ec2d1e2e5a3f0163e0eb3d8d8cb5df20
+      --flash-attn
+      --jinja
+      --host 192.168.1.4
+      --port 9888
+      --ctx-size 16384
+      --gpu-layers 50
+      -t 4
+    proxy: http://192.168.1.4:9888
+    aliases:
+      - phi4
+    checkEndpoint: /health
+    ttl: 60
+
+  "exaone3.5":
+    cmd: >
+      llama-server
+      -m /usr/share/ollama/.ollama/models/blobs/sha256-fffbdeec0c334b27ebb42cbdd75a3e869cf9a3efc45abd7b3e6d739343089038
+      --flash-attn
+      --jinja
+      --host 192.168.1.4
+      --port 9888
+      --ctx-size 32768
+      --gpu-layers 33
+      -t 4
+    proxy: http://192.168.1.4:9888
+    aliases:
+      - exaone3.5
+    checkEndpoint: /health
+    ttl: 60
+
+  "deepseek-r1":
+    cmd: >
+      llama-server
+      -m /usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e
+      --flash-attn
+      --host 192.168.1.4
+      --port 9888
+      --ctx-size 16384
+      --gpu-layers 49
+      -t 4
+    proxy: http://192.168.1.4:9888
+    aliases:
+      - deepseek-r1
+    checkEndpoint: /health
+    ttl: 60
+
+profiles:
+  coding:
+    - "llama3.1"
